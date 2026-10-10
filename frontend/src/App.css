@@ -1,0 +1,936 @@
+/* =========================================
+   NEXORA — IMMERSIVE INK-CLOUD EXPERIENCE
+   ========================================= */
+
+:root {
+  --green: #00efa5;
+  --green-dark: #00bd87;
+  --aqua: #53e6df;
+  --blue: #55c9ed;
+  --lavender: #b99aff;
+  --purple: #8f62e8;
+  --ink: #f5f0ff;
+  --muted: #c2b9df;
+  --border: rgba(200, 177, 255, 0.2);
+  --white: #ffffff;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+  color: var(--ink);
+  background:
+    linear-gradient(
+      120deg,
+      rgba(12, 7, 29, 0.78),
+      rgba(24, 10, 48, 0.70) 48%,
+      rgba(14, 10, 36, 0.80)
+    ),
+    url("/nexora-logo.png") center / cover fixed no-repeat,
+    #10091f;
+  background-color: #10091f;
+}
+
+/* Floating coloured light effects */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at 18% 28%,
+      rgba(0, 239, 165, 0.13),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 82% 22%,
+      rgba(151, 94, 255, 0.22),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 58% 85%,
+      rgba(64, 173, 255, 0.14),
+      transparent 28%
+    );
+  animation: nexoraGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes nexoraGlow {
+  0% {
+    transform: translate3d(-1%, 0, 0) scale(1);
+  }
+  100% {
+    transform: translate3d(1%, -2%, 0) scale(1.08);
+  }
+}
+
+#root,
+.dashboard {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  background: transparent !important;
+}
+
+/* Glassmorphism sidebar */
+.sidebar {
+  color: var(--ink);
+  background: rgba(15, 9, 34, 0.90) !important;
+  border-right: 1px solid var(--border);
+  box-shadow: 12px 0 45px rgba(5, 2, 20, 0.24);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.brand strong,
+.topbar h1,
+.section-heading h2,
+.panel-heading h2,
+.hero-panel h2,
+.metric-card h3 {
+  color: #fbf8ff;
+}
+
+.brand small,
+.nav-label,
+.nav-item,
+.muted,
+.metric-card > p,
+.metric-card > small,
+.hero-panel p,
+.footer {
+  color: var(--muted);
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: var(--green);
+  background: linear-gradient(
+    100deg,
+    rgba(0, 239, 165, 0.15),
+    rgba(87, 104, 255, 0.12)
+  );
+  box-shadow: inset 3px 0 0 var(--green);
+}
+
+.sidebar-bottom {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.045);
+  border-color: var(--border);
+}
+
+.sidebar-bottom strong {
+  color: #e9e1ff;
+}
+
+.sidebar-bottom small {
+  color: var(--muted);
+}
+
+/* Main dashboard */
+.main-content {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+}
+
+.topbar h1 {
+  letter-spacing: -1px;
+}
+
+.eyebrow {
+  color: var(--green);
+}
+
+/* Hero — ink-cloud-inspired glass panel */
+.hero-panel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(198, 166, 255, 0.30);
+  background:
+    radial-gradient(
+      ellipse at 85% 12%,
+      rgba(150, 91, 255, 0.34),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 12% 100%,
+      rgba(0, 226, 190, 0.20),
+      transparent 45%
+    ),
+    linear-gradient(
+      125deg,
+      rgba(25, 17, 52, 0.94),
+      rgba(43, 25, 77, 0.86) 55%,
+      rgba(25, 20, 59, 0.94)
+    );
+  box-shadow:
+    0 25px 80px rgba(5, 2, 25, 0.30),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.hero-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto -15% -75% 25%;
+  z-index: -1;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(0, 239, 165, 0.13);
+  filter: blur(65px);
+  animation: nexoraPulse 7s ease-in-out infinite alternate;
+}
+
+@keyframes nexoraPulse {
+  from {
+    transform: translateX(-5%) scale(0.9);
+    opacity: 0.45;
+  }
+  to {
+    transform: translateX(8%) scale(1.12);
+    opacity: 0.9;
+  }
+}
+
+.hero-panel h2 span {
+  color: var(--aqua);
+  background: linear-gradient(
+    100deg,
+    var(--green),
+    var(--aqua),
+    var(--lavender)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pill {
+  color: var(--green);
+  border-color: rgba(0, 239, 165, 0.35);
+  background: rgba(0, 239, 165, 0.08);
+}
+
+/* Logo mark */
+.brand-symbol,
+.orb-inner {
+  color: #063b32;
+  background: linear-gradient(135deg, #00efa5, #43dcd7);
+  box-shadow:
+    0 0 25px rgba(0, 239, 165, 0.23),
+    0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+.hero-orb {
+  border-color: rgba(0, 239, 165, 0.8);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 239, 165, 0.13),
+    rgba(147, 100, 255, 0.22)
+  );
+  box-shadow: 0 0 45px rgba(117, 91, 255, 0.18);
+}
+
+/* Dashboard cards */
+.metric-card,
+.panel {
+  color: var(--ink);
+  border: 1px solid rgba(202, 181, 255, 0.17);
+  background: rgba(22, 15, 46, 0.84);
+  box-shadow:
+    0 12px 35px rgba(5, 2, 20, 0.17),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.metric-card {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(0, 239, 165, 0.48);
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.24),
+    0 0 24px rgba(0, 239, 165, 0.07);
+}
+
+.metric-icon.cyan {
+  color: var(--aqua);
+  background: rgba(83, 230, 223, 0.12);
+}
+
+.metric-icon.green {
+  color: var(--green);
+  background: rgba(0, 239, 165, 0.12);
+}
+
+.metric-icon.red {
+  color: #ff8ba8;
+  background: rgba(255, 94, 139, 0.13);
+}
+
+.metric-icon.violet {
+  color: #c5a6ff;
+  background: rgba(166, 116, 255, 0.16);
+}
+
+/* Buttons */
+.button.primary {
+  color: #052c27;
+  background: linear-gradient(110deg, #00efa5, #58e5d4);
+  box-shadow: 0 5px 22px rgba(0, 239, 165, 0.15);
+}
+
+.button.primary:hover {
+  box-shadow: 0 8px 30px rgba(0, 239, 165, 0.28);
+}
+
+.button.secondary {
+  color: #e7ddff;
+  background: rgba(255, 255, 255, 0.055);
+  border-color: rgba(202, 181, 255, 0.22);
+}
+
+.button.secondary:hover {
+  color: var(--green);
+  border-color: rgba(0, 239, 165, 0.5);
+  background: rgba(0, 239, 165, 0.07);
+}
+
+/* Incident simulation */
+.simulation-box {
+  border-color: rgba(0, 239, 165, 0.25);
+  background: linear-gradient(
+    120deg,
+    rgba(0, 239, 165, 0.09),
+    rgba(88, 117, 255, 0.09)
+  );
+}
+
+.simulation-box strong,
+.empty-state strong,
+.incident-details > strong,
+td strong {
+  color: #f4edff;
+}
+
+.simulation-box p,
+.incident-details p,
+.incident-details small,
+tbody td small {
+  color: var(--muted);
+}
+
+.empty-state > span {
+  color: var(--green);
+  border-color: rgba(0, 239, 165, 0.3);
+  background: rgba(0, 239, 165, 0.08);
+}
+
+.incident-item,
+.panel-heading {
+  border-color: rgba(202, 181, 255, 0.12);
+}
+
+.incident-symbol {
+  color: #ff8ba8;
+  background: rgba(255, 94, 139, 0.12);
+}
+
+/* Tables */
+th {
+  color: #b7acd6;
+  background: rgba(255, 255, 255, 0.035);
+}
+
+td {
+  color: #d1c8e8;
+  border-color: rgba(202, 181, 255, 0.12);
+}
+
+tbody tr:hover {
+  background: rgba(104, 88, 177, 0.13);
+}
+
+.count-badge {
+  color: #d9caff;
+  background: rgba(160, 124, 255, 0.09);
+  border-color: var(--border);
+}
+
+/* Status and footer */
+.status-badge.resolved {
+  color: var(--green);
+  background: rgba(0, 239, 165, 0.12);
+}
+
+.status-badge.open {
+  color: #ff9ab2;
+  background: rgba(255, 94, 139, 0.13);
+}
+
+.footer {
+  border-color: var(--border);
+}
+
+.message.success {
+  color: var(--green);
+  background: rgba(0, 239, 165, 0.08);
+  border-color: rgba(0, 239, 165, 0.25);
+}
+
+.message.error {
+  color: #ff9ab2;
+  background: rgba(255, 94, 139, 0.09);
+  border-color: rgba(255, 94, 139, 0.25);
+}
+
+.updated {
+  color: var(--green);
+}
+
+.health-dot,
+.live-dot,
+.status-dot {
+  box-shadow: 0 0 12px rgba(0, 239, 165, 0.65);
+}
+
+/* Respect accessibility settings */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+
+/* NEXORA — LAYOUT REPAIR + PURPLE GLASS THEME */
+
+/* Restore the desktop sidebar when the responsive breakpoint
+   incorrectly switches the layout to mobile mode. */
+@media (min-width: 651px) {
+  .sidebar {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 248px !important;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 27px 18px !important;
+    background: rgba(15, 8, 34, 0.94) !important;
+    border-right: 1px solid rgba(183, 143, 255, 0.25);
+    z-index: 20;
+  }
+
+  .brand {
+    display: flex !important;
+    padding-bottom: 38px !important;
+  }
+
+  .nav-label {
+    display: block !important;
+  }
+
+  .nav-item {
+    display: flex !important;
+    width: 100%;
+    margin: 0 0 5px !important;
+    padding: 13px 12px !important;
+    text-align: left;
+    white-space: normal;
+    background: transparent;
+    border: 0;
+  }
+
+  .sidebar-bottom {
+    display: flex !important;
+    margin-top: auto;
+  }
+
+  .main-content {
+    margin-left: 248px !important;
+    min-width: 0;
+    padding: 32px clamp(18px, 3vw, 42px) !important;
+  }
+}
+
+/* Make all dashboard text readable on the dark theme */
+body {
+  color: #f4edff !important;
+}
+
+.topbar h1,
+.section-heading h2,
+.panel-heading h2,
+.metric-card h3,
+.hero-panel h2,
+.empty-state strong,
+.incident-details > strong {
+  color: #f8f3ff !important;
+}
+
+.muted,
+.metric-card > p,
+.metric-card > small,
+.hero-panel p {
+  color: #c6bce2 !important;
+}
+
+/* Prevent the hero and cards from becoming transparent or washed out */
+.hero-panel {
+  background:
+    radial-gradient(ellipse at 85% 10%, #8154d455, transparent 42%),
+    radial-gradient(ellipse at 12% 100%, #00d9a522, transparent 45%),
+    rgba(27, 17, 54, 0.94) !important;
+  border: 1px solid rgba(184, 145, 255, 0.32);
+}
+
+.metric-card,
+.panel {
+  background: rgba(22, 14, 45, 0.94) !important;
+  border: 1px solid rgba(184, 145, 255, 0.2);
+}
+
+/* Keep navigation and buttons consistent */
+.nav-item.active {
+  color: #00efa5 !important;
+  background: rgba(0, 239, 165, 0.12) !important;
+}
+
+.button.primary {
+  color: #092c27 !important;
+  background: linear-gradient(110deg, #00efa5, #55e5d4) !important;
+}
+
+/* Keep the layout responsive on actual small screens */
+@media (max-width: 650px) {
+  .sidebar {
+    position: relative !important;
+    width: 100% !important;
+    height: auto;
+  }
+
+  .main-content {
+    margin-left: 0 !important;
+    padding: 20px 14px !important;
+  }
+}
+
+/* NEXORA — alignment and spacing repair */
+/* Preserve the existing logo background */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-width: 320px;
+}
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background: transparent;
+}
+
+.sidebar {
+  flex: 0 0 248px;
+  width: 248px;
+  min-height: 100vh;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  width: calc(100% - 248px);
+  min-width: 0;
+  margin-left: 248px;
+  padding: 34px clamp(22px, 4vw, 58px);
+  background: transparent;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 26px;
+}
+
+.topbar > div {
+  min-width: 0;
+}
+
+.topbar h1 {
+  margin: 0;
+  line-height: 1.25;
+}
+
+.topbar .muted {
+  margin-top: 7px;
+  line-height: 1.6;
+}
+
+/* Sidebar brand and navigation */
+
+.brand {
+  align-items: center;
+  gap: 12px;
+  padding: 0 5px 35px;
+}
+
+.brand > div:last-child {
+  min-width: 0;
+}
+
+.brand strong {
+  font-size: 16px;
+  letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+.brand small {
+  font-size: 8px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 43px;
+  line-height: 1.4;
+}
+
+.nav-item > span {
+  flex: 0 0 auto;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+/* Page heading */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 30px 0 17px;
+}
+
+.section-heading h2,
+.panel-heading h2 {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.section-heading .muted,
+.panel-heading .muted {
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
+/* Hero — consistent width and clean text layout */
+
+.hero-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(20px, 4vw, 45px);
+  width: 100%;
+  min-width: 0;
+  min-height: 300px;
+  padding: clamp(25px, 3.5vw, 45px);
+  overflow: hidden;
+  border-radius: 22px;
+
+  /* Keep the existing logo-inspired background */
+  background-image:
+    linear-gradient(
+      110deg,
+      rgba(17, 12, 34, 0.78),
+      rgba(33, 20, 57, 0.58)
+    ),
+    url("/Blue%20Aesthetic%20Elegant%20Illustration%20Summer%20beach%20club%20Logo.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-content {
+  flex: 1 1 420px;
+  min-width: 0;
+  max-width: 680px;
+}
+
+.hero-panel .pill {
+  margin-bottom: 4px;
+}
+
+.hero-panel h2 {
+  margin: 20px 0 14px;
+  font-size: clamp(30px, 3.2vw, 46px);
+  line-height: 1.2;
+  letter-spacing: -1.5px;
+  overflow-wrap: break-word;
+}
+
+.hero-panel h2 span {
+  display: inline;
+}
+
+.hero-panel p {
+  max-width: 560px;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.hero-panel .hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+
+.hero-panel .button {
+  min-height: 42px;
+  white-space: normal;
+  text-align: center;
+}
+
+.hero-orb {
+  flex: 0 0 130px;
+  margin: 0;
+}
+
+.orb-inner {
+  display: grid;
+  place-items: center;
+}
+
+/* Metrics always align in a responsive grid */
+
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.metric-card {
+  min-width: 0;
+  padding: 20px;
+  overflow-wrap: anywhere;
+}
+
+.metric-card h3 {
+  margin: 10px 0;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.metric-card > p {
+  line-height: 1.6;
+}
+
+/* Panels and tables */
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+  width: 100%;
+  margin-top: 24px;
+}
+
+.panel {
+  width: 100%;
+  min-width: 0;
+}
+
+.panel-heading {
+  flex-wrap: wrap;
+  padding: 20px;
+}
+
+.simulation-box {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+th,
+td {
+  padding: 14px 12px;
+}
+
+/* Keep footer in normal document flow */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+  line-height: 1.7;
+}
+
+/* Medium screens */
+
+@media (max-width: 1150px) {
+  .sidebar {
+    flex-basis: 210px;
+    width: 210px;
+  }
+
+  .main-content {
+    width: calc(100% - 210px);
+    margin-left: 210px;
+    padding: 28px 24px;
+  }
+
+  .metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-orb {
+    flex-basis: 100px;
+    width: 100px;
+    height: 100px;
+  }
+
+  .orb-inner {
+    width: 68px;
+    height: 68px;
+    font-size: 35px;
+  }
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 800px) {
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    flex: 0 0 auto;
+    padding: 18px;
+  }
+
+  .brand {
+    padding-bottom: 18px;
+  }
+
+  .sidebar-bottom {
+    display: none;
+  }
+
+  .main-content {
+    width: 100%;
+    margin-left: 0;
+    padding: 24px 18px;
+  }
+
+  .content-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-panel {
+    min-height: auto;
+  }
+
+  .hero-orb {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: 20px 13px;
+  }
+
+  .metric-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .hero-panel {
+    padding: 24px 18px;
+  }
+
+  .hero-panel h2 {
+    font-size: 30px;
+  }
+
+  .hero-panel h2 span {
+    display: block;
+  }
+
+  .hero-panel .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .hero-panel .button {
+    width: 100%;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
